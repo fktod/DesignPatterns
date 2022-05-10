@@ -3,9 +3,8 @@ package org.example.builder;
 public class ResidenceBuilder implements Builder{
     private Building building;
 
-    @Override
-    public void buildBuilding() {
-        building = new ResidenceBuilding();
+    public ResidenceBuilder() {
+        this.building = new ResidenceBuilding();
     }
 
     @Override

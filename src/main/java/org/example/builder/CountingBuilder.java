@@ -3,8 +3,7 @@ package org.example.builder;
 public class CountingBuilder implements Builder {
     private Building building;
 
-    @Override
-    public void buildBuilding() {
+    public CountingBuilder() {
         this.building = new CountingBuilding();
     }
 

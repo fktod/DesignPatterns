@@ -1,8 +1,13 @@
 package org.example.builder;
 
 public class Designer {
-    public Building designBuilding(Builder builder) {
-        builder.buildBuilding();
+    private Builder builder;
+
+    public Designer(Builder builder) {
+        this.builder = builder;
+    }
+
+    public Building build() {
         builder.buildRoom(1);
         builder.buildRoom(2);
         builder.buildRoom(3);
@@ -12,8 +17,7 @@ public class Designer {
         return builder.getResult();
     }
 
-    public Building designHighBuilding(Builder builder) {
-        builder.buildBuilding();
+    public Building buildHigh() {
         for (int i = 1; i <= 100; i++) {
             builder.buildRoom(i);
             if (i % 10 == 0) {

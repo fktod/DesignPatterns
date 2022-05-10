@@ -10,16 +10,17 @@ public class TestBuilder {
     @Test
     public void test() {
         ResidenceBuilder rb = new ResidenceBuilder();
-        Designer designer = new Designer();
-        Building building = designer.designBuilding(rb);
+        Designer designer1 = new Designer(rb);
+        Building building = designer1.build();
         building.show();
-        Building highBuilding = designer.designHighBuilding(rb);
+        Building highBuilding = designer1.buildHigh();
         highBuilding.show();
 
         CountingBuilder cb = new CountingBuilder();
-        Building count = designer.designBuilding(cb);
+        Designer designer2 = new Designer(cb);
+        Building count = designer2.build();
         count.show();
-        Building highCount = designer.designHighBuilding(cb);
+        Building highCount = designer2.buildHigh();
         highCount.show();
     }
 }
