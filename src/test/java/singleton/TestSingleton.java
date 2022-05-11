@@ -1,9 +1,9 @@
 package singleton;
 
-import org.apache.commons.lang3.SerializationUtils;
 import org.example.singleton.Singleton7;
 import org.junit.Test;
 
+import java.io.*;
 import java.lang.reflect.Constructor;
 
 public class TestSingleton {
@@ -18,10 +18,37 @@ public class TestSingleton {
     }
 
     @Test
-    public void testSerialize(){
+    public void testSerialize() {
         Singleton7 instance = Singleton7.getInstance();
-        byte[] serialize = SerializationUtils.serialize(instance);
-        Singleton7 newInstance = SerializationUtils.deserialize(serialize);
-        System.out.println(instance == newInstance);
+        ByteArrayOutputStream bos = null;
+        ObjectOutputStream oos = null;
+        ByteArrayInputStream bis = null;
+        ObjectInputStream ois = null;
+        try {
+            // 序列化
+            bos = new ByteArrayOutputStream();
+            oos = new ObjectOutputStream(bos);
+            oos.writeObject(instance);
+            // 反序列化
+            bis = new ByteArrayInputStream(bos.toByteArray());
+            ois = new ObjectInputStream(bis);
+            Singleton7 newInstance = (Singleton7) ois.readObject();
+            System.out.println(instance == newInstance);
+        } catch (IOException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                assert bos != null;
+                bos.close();
+                assert oos != null;
+                oos.close();
+                assert bis != null;
+                bis.close();
+                assert ois != null;
+                ois.close();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 }
