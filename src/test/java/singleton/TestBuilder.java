@@ -4,6 +4,7 @@ import org.example.builder.Building;
 import org.example.builder.CountingBuilder;
 import org.example.builder.Designer;
 import org.example.builder.ResidenceBuilder;
+import org.example.builder.chain.Student;
 import org.junit.Test;
 
 public class TestBuilder {
@@ -22,5 +23,11 @@ public class TestBuilder {
         count.show();
         Building highCount = designer2.buildHigh();
         highCount.show();
+    }
+
+    @Test
+    public void testChain(){
+        Student student = Student.builder().name("张三").age(18).build();
+        System.out.println(student.toString());
     }
 }
